@@ -13,10 +13,17 @@ export interface BankEntry {
   balances: AccountBalance[]
 }
 
-const BankEntryItem: React.FC<{ bankEntry: BankEntry }> = ({ bankEntry }) => {
-  console.log(bankEntry)
-
-  return <div className="BankEntryItem">A bank entry item</div>
-}
+const BankEntryItem: React.FC<{ bankEntry: BankEntry }> = ({ bankEntry }) => (
+  <div className="BankEntryItem">
+    <div className="BankEntryItem-date">{bankEntry.date.toString()}</div>
+    <ul>
+      {bankEntry.balances.map(balance => (
+        <li
+          key={balance.bankAccountId}
+        >{`${balance.bankAccountId} - ${balance.amount}`}</li>
+      ))}
+    </ul>
+  </div>
+)
 
 export default BankEntryItem
