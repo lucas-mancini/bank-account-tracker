@@ -16,7 +16,7 @@ export interface BankEntry {
 const BankEntryItem: React.FC<{ bankEntry: BankEntry }> = ({ bankEntry }) => (
   <div className="BankEntryItem">
     <div className="BankEntryItem-date">{bankEntry.date.toString()}</div>
-    <ul>
+    <ul className="BankEntryItem-balances">
       {bankEntry.balances.map(balance => (
         <li
           key={balance.bankAccountId}
