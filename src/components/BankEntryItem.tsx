@@ -1,4 +1,6 @@
 import React from 'react'
+import { Card, Elevation, Icon } from '@blueprintjs/core'
+import { IconNames } from '@blueprintjs/icons'
 import './BankEntryItem.scss'
 
 /* public interfaces */
@@ -21,8 +23,24 @@ const BankEntryItem: React.FC<{ bankEntry: BankEntry }> = ({ bankEntry }) => {
   })
 
   return (
-    <div className="BankEntryItem">
-      <div className="BankEntryItem-date">{formattedDate}</div>
+    <Card
+      interactive={false}
+      elevation={Elevation.THREE}
+      className="BankEntryItem"
+    >
+      <div className="BankEntryItem-header">
+        <Icon
+          className="BankEntryItem-date-icon"
+          icon={IconNames.CALENDAR}
+          iconSize={16}
+        />
+        <span className="BankEntryItem-date">{formattedDate}</span>
+        <Icon
+          className="BankEntryItem-trash"
+          icon={IconNames.TRASH}
+          iconSize={16}
+        />
+      </div>
       <ul className="BankEntryItem-balances">
         {bankEntry.balances.map(balance => (
           <li
@@ -30,7 +48,7 @@ const BankEntryItem: React.FC<{ bankEntry: BankEntry }> = ({ bankEntry }) => {
           >{`${balance.bankAccountId} - ${balance.amount}`}</li>
         ))}
       </ul>
-    </div>
+    </Card>
   )
 }
 

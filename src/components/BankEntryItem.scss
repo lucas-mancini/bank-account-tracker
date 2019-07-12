@@ -1,2 +1,40 @@
+@import '~@blueprintjs/core/lib/scss/variables';
+
 .BankEntryItem {
+  text-align: left;
+  margin: 0 10px 25px;
+
+  &-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  &-date-icon {
+    color: $pt-text-color-muted;
+    margin-right: 10px;
+  }
+
+  &-date {
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: $pt-text-color-muted;
+  }
+
+  &-trash {
+    margin-left: auto;
+    color: $pt-text-color-muted;
+    cursor: pointer;
+
+    &:hover {
+      color: $pt-intent-danger;
+    }
+  }
+
+  &-balances {
+    list-style: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 0 10px;
+  }
 }
