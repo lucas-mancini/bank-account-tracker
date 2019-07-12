@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card, Elevation, Icon } from '@blueprintjs/core'
 import { IconNames } from '@blueprintjs/icons'
+import FlagIcon from './FlagIcon'
 import './BankEntryItem.scss'
 
 /* public interfaces */
@@ -43,9 +44,10 @@ const BankEntryItem: React.FC<{ bankEntry: BankEntry }> = ({ bankEntry }) => {
       </div>
       <ul className="BankEntryItem-balances">
         {bankEntry.balances.map(balance => (
-          <li
-            key={balance.bankAccountId}
-          >{`${balance.bankAccountId} - ${balance.amount}`}</li>
+          <li key={balance.bankAccountId} className="BankEntryItem-balance">
+            <FlagIcon className="BankEntryItem-flag" code="de" />
+            <span>{`${balance.bankAccountId} - ${balance.amount}`}</span>
+          </li>
         ))}
       </ul>
     </Card>

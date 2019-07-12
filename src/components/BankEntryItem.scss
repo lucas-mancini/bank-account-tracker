@@ -37,4 +37,15 @@
     font-size: 1.1rem;
     padding: 0 10px;
   }
+
+  &-balance {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 6px 0;
+  }
+
+  &-flag {
+    margin-right: 10px;
+  }
 }
