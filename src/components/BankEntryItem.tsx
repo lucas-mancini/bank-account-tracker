@@ -16,7 +16,15 @@ export interface BankEntry {
   balances: AccountBalance[]
 }
 
-const BankEntryItem: React.FC<{ bankEntry: BankEntry }> = ({ bankEntry }) => {
+interface BankEntryItemProps {
+  bankEntry: BankEntry
+  onRemove: (id: string) => void
+}
+
+const BankEntryItem: React.FC<BankEntryItemProps> = ({
+  bankEntry,
+  onRemove
+}) => {
   const formattedDate = bankEntry.date.toLocaleString('en-US', {
     year: 'numeric',
     month: 'long',
@@ -47,6 +55,7 @@ const BankEntryItem: React.FC<{ bankEntry: BankEntry }> = ({ bankEntry }) => {
           className="BankEntryItem-trash"
           icon={IconNames.TRASH}
           iconSize={16}
+          onClick={() => onRemove(bankEntry.id)}
         />
       </div>
       <ul className="BankEntryItem-balances">
