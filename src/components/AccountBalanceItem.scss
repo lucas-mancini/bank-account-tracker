@@ -1,10 +1,29 @@
+@import '~@blueprintjs/core/lib/scss/variables';
+
 .AccountBalanceItem {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: flex-start;
   padding: 6px 0;
 
-  > * {
+  > *:not(:last-child) {
     margin-right: 10px;
+  }
+
+  &-bank {
+    font-weight: 400;
+  }
+
+  &-currency {
+    font-weight: 600;
+    margin-left: auto;
+    color: $gray1;
+  }
+
+  &-amount {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: $dark-gray3;
   }
 }

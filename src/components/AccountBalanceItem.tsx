@@ -3,13 +3,18 @@ import FlagIcon from './FlagIcon'
 import BankAccounts from '../config/BankAccounts'
 import './AccountBalanceItem.scss'
 
-function getBankAccountFromId(id: string) {
-  return BankAccounts.find(account => account.id === id)
-}
-
 export interface AccountBalance {
   bankAccountId: string
   amount: number
+}
+
+const amountFormatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD'
+})
+
+function getBankAccountFromId(id: string) {
+  return BankAccounts.find(account => account.id === id)
 }
 
 const AccountBalanceItem: React.FC<{ balance: AccountBalance }> = ({
@@ -26,9 +31,13 @@ const AccountBalanceItem: React.FC<{ balance: AccountBalance }> = ({
         className="AccountBalanceItem-flag"
         code={bankAccount.country}
       />
-      <span>{bankAccount.bankName}</span>
-      <span>{bankAccount.currency}</span>
-      <span>${balance.amount}</span>
+      <span className="AccountBalanceItem-bank">{bankAccount.bankName}</span>
+      <span className="AccountBalanceItem-currency">
+        {bankAccount.currency}
+      </span>
+      <span className="AccountBalanceItem-amount">
+        {amountFormatter.format(balance.amount)}
+      </span>
     </li>
   )
 }
