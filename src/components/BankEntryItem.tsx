@@ -38,10 +38,7 @@ const BankEntryItem: React.FC<{ bankEntry: BankEntry }> = ({ bankEntry }) => {
       </div>
       <ul className="BankEntryItem-balances">
         {bankEntry.balances.map(balance => (
-          <AccountBalanceItem
-            key={`${balance.bankAccountId}__${balance.amount}}`}
-            balance={balance}
-          />
+          <AccountBalanceItem key={balance.bankAccountId} balance={balance} />
         ))}
       </ul>
     </Card>

@@ -21,12 +21,14 @@ const AccountBalanceItem: React.FC<{ balance: AccountBalance }> = ({
   }
 
   return (
-    <li key={balance.bankAccountId} className="AccountBalanceItem">
+    <li className="AccountBalanceItem">
       <FlagIcon
         className="AccountBalanceItem-flag"
         code={bankAccount.country}
       />
-      <span>{`${balance.bankAccountId} - ${balance.amount}`}</span>
+      <span>{bankAccount.bankName}</span>
+      <span>{bankAccount.currency}</span>
+      <span>${balance.amount}</span>
     </li>
   )
 }
