@@ -1,0 +1,10 @@
+.AccountBalanceItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 6px 0;
+
+  &-flag {
+    margin-right: 10px;
+  }
+}

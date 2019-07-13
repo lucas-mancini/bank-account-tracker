@@ -10,42 +10,42 @@ const BankAccounts: BankAccount[] = [
   {
     id: 'Galicia',
     bankName: 'Banco Galicia',
-    country: 'AR',
+    country: 'ar',
     currency: 'ARS',
     exchangeRateToUSD: 0.02392
   },
   {
     id: 'DB',
     bankName: 'Deutsche Bank',
-    country: 'DE',
+    country: 'de',
     currency: 'EUR',
     exchangeRateToUSD: 1.12258
   },
   {
     id: 'CommBank',
     bankName: 'Commonwealth Bank',
-    country: 'AU',
+    country: 'au',
     currency: 'AUD',
     exchangeRateToUSD: 0.6971
   },
   {
     id: 'Citi',
     bankName: 'Citibank',
-    country: 'UM',
+    country: 'um',
     currency: 'USD',
     exchangeRateToUSD: 1
   },
   {
     id: 'TD',
     bankName: 'TD Bank',
-    country: 'UM',
+    country: 'um',
     currency: 'USD',
     exchangeRateToUSD: 1
   },
   {
     id: 'PayPal',
     bankName: 'PayPal',
-    country: 'UM',
+    country: 'um',
     currency: 'USD',
     exchangeRateToUSD: 1
   }
