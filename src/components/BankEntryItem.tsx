@@ -4,6 +4,11 @@ import { IconNames } from '@blueprintjs/icons'
 import AccountBalanceItem, { AccountBalance } from './AccountBalanceItem'
 import './BankEntryItem.scss'
 
+const amountFormatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD'
+})
+
 export interface BankEntry {
   id: string
   date: Date
@@ -38,9 +43,19 @@ const BankEntryItem: React.FC<{ bankEntry: BankEntry }> = ({ bankEntry }) => {
       </div>
       <ul className="BankEntryItem-balances">
         {bankEntry.balances.map(balance => (
-          <AccountBalanceItem key={balance.bankAccountId} balance={balance} />
+          <AccountBalanceItem
+            key={balance.bankAccountId}
+            balance={balance}
+            amountFormatter={amountFormatter}
+          />
         ))}
       </ul>
+      <div className="BankEntryItem-total">
+        <span className="BankEntryItem-total-label"> Total (in USD)</span>
+        <span className="BankEntryItem-total-amount">
+          {amountFormatter.format(110456.72)}
+        </span>
+      </div>
     </Card>
   )
 }

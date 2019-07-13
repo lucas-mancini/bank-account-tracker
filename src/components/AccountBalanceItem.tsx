@@ -8,17 +8,18 @@ export interface AccountBalance {
   amount: number
 }
 
-const amountFormatter = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD'
-})
-
 function getBankAccountFromId(id: string) {
   return BankAccounts.find(account => account.id === id)
 }
 
-const AccountBalanceItem: React.FC<{ balance: AccountBalance }> = ({
-  balance
+interface AccountBalanceItemProps {
+  balance: AccountBalance
+  amountFormatter: Intl.NumberFormat
+}
+
+const AccountBalanceItem: React.FC<AccountBalanceItemProps> = ({
+  balance,
+  amountFormatter
 }) => {
   const bankAccount = getBankAccountFromId(balance.bankAccountId)
   if (!bankAccount) {
