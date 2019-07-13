@@ -68,7 +68,7 @@ const BankEntryItem: React.FC<BankEntryItemProps> = ({
         ))}
       </ul>
       <div className="BankEntryItem-total">
-        <span className="BankEntryItem-total-label"> Total (in USD)</span>
+        <span className="BankEntryItem-total-label">Total (in USD)</span>
         <span className="BankEntryItem-total-amount">
           {amountFormatter.format(totalAmount)}
         </span>
