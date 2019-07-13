@@ -1,15 +1,11 @@
 import React from 'react'
 import FlagIcon from './FlagIcon'
-import BankAccounts from '../config/BankAccounts'
+import { getBankAccountFromId } from '../util/helpers'
 import './AccountBalanceItem.scss'
 
 export interface AccountBalance {
   bankAccountId: string
   amount: number
-}
-
-function getBankAccountFromId(id: string) {
-  return BankAccounts.find(account => account.id === id)
 }
 
 interface AccountBalanceItemProps {
