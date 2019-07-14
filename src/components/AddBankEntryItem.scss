@@ -2,5 +2,9 @@
 
 .AddBankEntryItem {
   margin: 20px 10px;
-  background-color: $forest5;
+  background-color: #62d96b5e;
+
+  &-button {
+    min-width: 120px;
+  }
 }
