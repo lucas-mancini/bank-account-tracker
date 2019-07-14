@@ -2,7 +2,7 @@ import React from 'react'
 import { Card, Elevation, Icon } from '@blueprintjs/core'
 import { IconNames } from '@blueprintjs/icons'
 import AccountBalanceItem, { AccountBalance } from './AccountBalanceItem'
-import { getBankAccountFromId } from '../util/helpers'
+import { getBankAccountFromId, formatDate } from '../util/helpers'
 import './BankEntryItem.scss'
 
 const amountFormatter = new Intl.NumberFormat('en-US', {
@@ -25,11 +25,7 @@ const BankEntryItem: React.FC<BankEntryItemProps> = ({
   bankEntry,
   onRemove
 }) => {
-  const formattedDate = bankEntry.date.toLocaleString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  })
+  const formattedDate = formatDate(bankEntry.date)
 
   const totalAmount = bankEntry.balances.reduce((total, balance) => {
     const bankAccount = getBankAccountFromId(balance.bankAccountId)

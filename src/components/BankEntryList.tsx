@@ -9,6 +9,11 @@ const BankEntryList: React.FC = () => {
   const [entryItems, setEntryItems] = useState<BankEntry[]>(INITIAL_DATA)
   const [entryIdToRemove, setEntryIdToRemove] = useState('')
 
+  const handleAddEntry = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    console.log('new item added')
+  }
+
   const handleRemoveEntry = (id: string) => {
     setEntryItems(entryItems.filter(entry => entry.id !== id))
     setEntryIdToRemove('')
@@ -40,7 +45,7 @@ const BankEntryList: React.FC = () => {
       </section>
       <Divider />
       <section className="BankEntryList-new-item">
-        <AddBankEntryItem />
+        <AddBankEntryItem onAdd={handleAddEntry} />
       </section>
     </React.Fragment>
   )
