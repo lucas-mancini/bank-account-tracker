@@ -134,6 +134,7 @@ const AddBankEntryItem: React.FC<AddBankEntryItemProps> = ({ onAdd }) => {
           intent={Intent.PRIMARY}
           icon="new-object"
           type="submit"
+          disabled={!selectedDate || balances.length === 0}
         >
           Create
         </Button>
