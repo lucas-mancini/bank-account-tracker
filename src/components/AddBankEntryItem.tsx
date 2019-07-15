@@ -10,8 +10,10 @@ import {
   NumericInput
 } from '@blueprintjs/core'
 import { DateInput, IDateFormatProps } from '@blueprintjs/datetime'
+import uuidv4 from 'uuid/v4'
 import { formatDate } from '../util/helpers'
 import BankAccounts from '../config/BankAccounts'
+import { BankEntry } from './BankEntryItem'
 import './AddBankEntryItem.scss'
 
 const jsDateFormatter: IDateFormatProps = {
@@ -31,7 +33,7 @@ const DEFAULT_NEW_BALANCE = {
 }
 
 interface AddBankEntryItemProps {
-  onAdd: (event: React.FormEvent<HTMLFormElement>) => void
+  onAdd: (entry: BankEntry) => void
 }
 
 const AddBankEntryItem: React.FC<AddBankEntryItemProps> = ({ onAdd }) => {
@@ -56,9 +58,29 @@ const AddBankEntryItem: React.FC<AddBankEntryItemProps> = ({ onAdd }) => {
     setBalances([...balances, DEFAULT_NEW_BALANCE])
   }
 
+  const handleAddEntry = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+
+    const entryId = uuidv4()
+    const entryDate = selectedDate
+    const entryBalances = balances
+      .filter(balance => !Number.isNaN(Number.parseFloat(balance.amount)))
+      .map(balance => ({
+        bankAccountId: balance.bankAccountId,
+        amount: Number.parseFloat(balance.amount)
+      }))
+      .filter(balance => balance.amount !== 0)
+
+    onAdd({ id: entryId, date: entryDate, balances: entryBalances })
+
+    // reset state in component to be able to add new entries afterwards
+    setSelectedDate(new Date())
+    setBalances([DEFAULT_NEW_BALANCE])
+  }
+
   return (
     <Card interactive={false} elevation={Elevation.FOUR} className="AddBankEntryItem">
-      <form onSubmit={onAdd} className="AddBankEntryItem-form">
+      <form onSubmit={handleAddEntry} className="AddBankEntryItem-form">
         <FormGroup label="Date" labelFor="date-input" labelInfo="(required)" inline={true}>
           <DateInput
             value={selectedDate}

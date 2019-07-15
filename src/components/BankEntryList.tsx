@@ -9,9 +9,8 @@ const BankEntryList: React.FC = () => {
   const [entryItems, setEntryItems] = useState<BankEntry[]>(INITIAL_DATA)
   const [entryIdToRemove, setEntryIdToRemove] = useState('')
 
-  const handleAddEntry = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    console.log('new item added')
+  const handleAddEntry = (entry: BankEntry) => {
+    setEntryItems([...entryItems, entry])
   }
 
   const handleRemoveEntry = (id: string) => {
@@ -23,11 +22,7 @@ const BankEntryList: React.FC = () => {
     <React.Fragment>
       <section className="BankEntryList">
         {entryItems.map(item => (
-          <BankEntryItem
-            key={item.id}
-            bankEntry={item}
-            onRemove={id => setEntryIdToRemove(id)}
-          />
+          <BankEntryItem key={item.id} bankEntry={item} onRemove={id => setEntryIdToRemove(id)} />
         ))}
         <Alert
           canEscapeKeyCancel={true}
