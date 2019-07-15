@@ -8,9 +8,10 @@ import {
 } from '../actions/actions'
 import { BankEntry } from '../types'
 
-const initialDataState: BankEntry[] = initialData
+type DataStateType = BankEntry[]
 
-function data(state = initialDataState, action: BankEntryActionTypes): BankEntry[] {
+const initialDataState: DataStateType = initialData
+function dataReducer(state = initialDataState, action: BankEntryActionTypes): DataStateType {
   switch (action.type) {
     case ADD_ENTRY:
       return [...state, action.payload]
@@ -21,9 +22,10 @@ function data(state = initialDataState, action: BankEntryActionTypes): BankEntry
   }
 }
 
-const initialAppState = { entryIdToRemove: '' }
+type AppStateType = { entryIdToRemove: string }
 
-function app(state = initialAppState, action: BankEntryActionTypes): { entryIdToRemove: string } {
+const initialAppState: AppStateType = { entryIdToRemove: '' }
+function appReducer(state = initialAppState, action: BankEntryActionTypes): AppStateType {
   switch (action.type) {
     case SET_ENTRY_ID_TO_REMOVE:
       return { ...state, entryIdToRemove: action.id }
@@ -33,8 +35,8 @@ function app(state = initialAppState, action: BankEntryActionTypes): { entryIdTo
 }
 
 const rootReducer = combineReducers({
-  data,
-  app
+  data: dataReducer,
+  app: appReducer
 })
 
 export default rootReducer
