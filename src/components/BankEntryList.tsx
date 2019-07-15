@@ -12,9 +12,9 @@ import './BankEntryList.scss'
 interface BankEntryListProps {
   entryItems: BankEntry[]
   entryIdToRemove: string
-  onAddEntry: (entry: BankEntry) => void
-  onRemoveEntry: (id: string) => void
-  setEntryIdToRemove: (id: string) => void
+  onAddEntry: typeof addEntry
+  onRemoveEntry: typeof removeEntry
+  setEntryIdToRemove: typeof setEntryIdToRemove
 }
 
 const BankEntryList: React.FC<BankEntryListProps> = ({

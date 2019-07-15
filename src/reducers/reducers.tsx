@@ -6,9 +6,7 @@ import {
   REMOVE_ENTRY,
   SET_ENTRY_ID_TO_REMOVE
 } from '../actions/actions'
-import { BankEntry } from '../types'
-
-type DataStateType = BankEntry[]
+import { DataStateType, AppStateType } from '../types'
 
 const initialDataState: DataStateType = initialData
 function dataReducer(state = initialDataState, action: BankEntryActionTypes): DataStateType {
@@ -21,8 +19,6 @@ function dataReducer(state = initialDataState, action: BankEntryActionTypes): Da
       return state
   }
 }
-
-type AppStateType = { entryIdToRemove: string }
 
 const initialAppState: AppStateType = { entryIdToRemove: '' }
 function appReducer(state = initialAppState, action: BankEntryActionTypes): AppStateType {

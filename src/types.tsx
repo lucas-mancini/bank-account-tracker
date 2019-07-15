@@ -16,3 +16,7 @@ export interface AccountBalance {
   bankAccountId: string
   amount: number
 }
+
+// reducer types
+export type DataStateType = BankEntry[]
+export type AppStateType = { entryIdToRemove: string }
