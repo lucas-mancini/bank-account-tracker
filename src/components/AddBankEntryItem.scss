@@ -14,8 +14,17 @@
     font-weight: 500;
   }
 
+  &-balances {
+    margin-bottom: 12px;
+  }
+
+  &-balance {
+    margin-bottom: 8px;
+  }
+
   &-new-balance-button {
-    margin-left: 10px;
+    position: relative;
+    right: -15px;
   }
 
   &-create-button {
