@@ -2,7 +2,10 @@
 
 .AddBankEntryItem {
   margin: 20px 10px;
-  background-color: #62d96b5e;
+
+  &.bp3-card {
+    background-color: #62d96b5e;
+  }
 
   &-form {
     display: flex;
