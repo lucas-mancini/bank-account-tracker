@@ -1,10 +1,4 @@
-interface BankAccount {
-  id: string
-  bankName: string
-  country: string
-  currency: string
-  exchangeRateToUSD: number
-}
+import { BankAccount } from '../types'
 
 const BankAccounts: BankAccount[] = [
   {

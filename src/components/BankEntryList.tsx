@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { Intent, Alert, Divider } from '@blueprintjs/core'
-import BankEntryItem, { BankEntry } from './BankEntryItem'
+import BankEntryItem from './BankEntryItem'
 import INITIAL_DATA from '../initialData'
 import AddBankEntryItem from './AddBankEntryItem'
+import { BankEntry } from '../types'
 import './BankEntryList.scss'
 
 const BankEntryList: React.FC = () => {

@@ -13,7 +13,7 @@ import { DateInput, IDateFormatProps } from '@blueprintjs/datetime'
 import uuidv4 from 'uuid/v4'
 import { formatDate } from '../util/helpers'
 import BankAccounts from '../config/BankAccounts'
-import { BankEntry } from './BankEntryItem'
+import { BankEntry } from '../types'
 import './AddBankEntryItem.scss'
 
 const jsDateFormatter: IDateFormatProps = {
