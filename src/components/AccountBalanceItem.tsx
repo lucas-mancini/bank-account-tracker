@@ -1,16 +1,23 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import FlagIcon from './FlagIcon'
 import { getBankAccountFromId } from '../util/helpers'
-import { AccountBalance } from '../types'
+import { AccountBalance, BankAccount } from '../types'
+import { AppState } from '../reducers/reducers'
 import './AccountBalanceItem.scss'
 
 interface AccountBalanceItemProps {
   balance: AccountBalance
   amountFormatter: Intl.NumberFormat
+  bankAccounts: BankAccount[]
 }
 
-const AccountBalanceItem: React.FC<AccountBalanceItemProps> = ({ balance, amountFormatter }) => {
-  const bankAccount = getBankAccountFromId(balance.bankAccountId)
+const AccountBalanceItem: React.FC<AccountBalanceItemProps> = ({
+  balance,
+  amountFormatter,
+  bankAccounts
+}) => {
+  const bankAccount = getBankAccountFromId(bankAccounts, balance.bankAccountId)
   if (!bankAccount) {
     return null
   }
@@ -25,4 +32,10 @@ const AccountBalanceItem: React.FC<AccountBalanceItemProps> = ({ balance, amount
   )
 }
 
-export default AccountBalanceItem
+const mapStateToProps = (state: AppState) => {
+  return {
+    bankAccounts: state.data.bankAccounts
+  }
+}
+
+export default connect(mapStateToProps)(AccountBalanceItem)

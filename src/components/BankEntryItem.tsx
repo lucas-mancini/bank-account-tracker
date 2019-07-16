@@ -1,10 +1,12 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Card, Elevation, Icon } from '@blueprintjs/core'
 import { IconNames } from '@blueprintjs/icons'
 import AccountBalanceItem from './AccountBalanceItem'
 import { getBankAccountFromId, formatDate } from '../util/helpers'
-import { BankEntry } from '../types'
+import { BankEntry, BankAccount } from '../types'
 import './BankEntryItem.scss'
+import { AppState } from '../reducers/reducers'
 
 const amountFormatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -14,13 +16,14 @@ const amountFormatter = new Intl.NumberFormat('en-US', {
 interface BankEntryItemProps {
   bankEntry: BankEntry
   onRemove: (id: string) => void
+  bankAccounts: BankAccount[]
 }
 
-const BankEntryItem: React.FC<BankEntryItemProps> = ({ bankEntry, onRemove }) => {
+const BankEntryItem: React.FC<BankEntryItemProps> = ({ bankEntry, onRemove, bankAccounts }) => {
   const formattedDate = formatDate(bankEntry.date)
 
   const totalAmount = bankEntry.balances.reduce((total, balance) => {
-    const bankAccount = getBankAccountFromId(balance.bankAccountId)
+    const bankAccount = getBankAccountFromId(bankAccounts, balance.bankAccountId)
     if (!bankAccount) return total
 
     return total + balance.amount * bankAccount.exchangeRateToUSD
@@ -55,4 +58,10 @@ const BankEntryItem: React.FC<BankEntryItemProps> = ({ bankEntry, onRemove }) =>
   )
 }
 
-export default BankEntryItem
+const mapStateToProps = (state: AppState) => {
+  return {
+    bankAccounts: state.data.bankAccounts
+  }
+}
+
+export default connect(mapStateToProps)(BankEntryItem)

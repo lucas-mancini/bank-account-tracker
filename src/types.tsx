@@ -18,5 +18,8 @@ export interface AccountBalance {
 }
 
 // reducer types
-export type DataStateType = BankEntry[]
+export type DataStateType = {
+  bankEntries: BankEntry[]
+  bankAccounts: BankAccount[]
+}
 export type AppStateType = { entryIdToRemove: string }

@@ -1,7 +1,7 @@
-import BankAccounts from '../config/BankAccounts'
+import { BankAccount } from '../types'
 
-export function getBankAccountFromId(id: string) {
-  return BankAccounts.find(account => account.id === id)
+export function getBankAccountFromId(accounts: BankAccount[], id: string) {
+  return accounts.find(account => account.id === id)
 }
 
 export function formatDate(date: Date) {

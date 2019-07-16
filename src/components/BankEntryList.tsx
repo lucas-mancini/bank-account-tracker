@@ -55,7 +55,7 @@ const BankEntryList: React.FC<BankEntryListProps> = ({
 
 const mapStateToProps = (state: AppState) => {
   return {
-    entryItems: state.data,
+    entryItems: state.data.bankEntries,
     entryIdToRemove: state.app.entryIdToRemove
   }
 }

@@ -7,14 +7,24 @@ import {
   SET_ENTRY_ID_TO_REMOVE
 } from '../actions/actions'
 import { DataStateType, AppStateType } from '../types'
+import BankAccounts from '../config/BankAccounts'
 
-const initialDataState: DataStateType = initialData
+const initialDataState: DataStateType = {
+  bankEntries: initialData,
+  bankAccounts: BankAccounts
+}
 function dataReducer(state = initialDataState, action: BankEntryActionTypes): DataStateType {
   switch (action.type) {
     case ADD_ENTRY:
-      return [...state, action.payload]
+      return {
+        ...state,
+        bankEntries: [...state.bankEntries, action.payload]
+      }
     case REMOVE_ENTRY:
-      return state.filter(entry => entry.id !== action.id)
+      return {
+        ...state,
+        bankEntries: state.bankEntries.filter(entry => entry.id !== action.id)
+      }
     default:
       return state
   }

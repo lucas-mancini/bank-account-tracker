@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { connect } from 'react-redux'
 import {
   Card,
   Elevation,
@@ -12,8 +13,8 @@ import {
 import { DateInput, IDateFormatProps } from '@blueprintjs/datetime'
 import uuidv4 from 'uuid/v4'
 import { formatDate } from '../util/helpers'
-import BankAccounts from '../config/BankAccounts'
-import { BankEntry } from '../types'
+import { BankEntry, BankAccount } from '../types'
+import { AppState } from '../reducers/reducers'
 import './AddBankEntryItem.scss'
 
 const jsDateFormatter: IDateFormatProps = {
@@ -22,21 +23,17 @@ const jsDateFormatter: IDateFormatProps = {
   placeholder: 'MMM DD, YYYY'
 }
 
-const accountSelectorOptions = BankAccounts.map(account => ({
-  value: account.id,
-  label: account.bankName
-}))
-
-const DEFAULT_NEW_BALANCE = {
-  bankAccountId: accountSelectorOptions[0].value,
-  amount: NumericInput.VALUE_EMPTY
-}
-
 interface AddBankEntryItemProps {
   onAdd: (entry: BankEntry) => void
+  bankAccounts: BankAccount[]
 }
 
-const AddBankEntryItem: React.FC<AddBankEntryItemProps> = ({ onAdd }) => {
+const AddBankEntryItem: React.FC<AddBankEntryItemProps> = ({ onAdd, bankAccounts }) => {
+  const DEFAULT_NEW_BALANCE = {
+    bankAccountId: bankAccounts[0].id,
+    amount: NumericInput.VALUE_EMPTY
+  }
+
   const [selectedDate, setSelectedDate] = useState(new Date())
   const [balances, setBalances] = useState([DEFAULT_NEW_BALANCE])
 
@@ -77,6 +74,11 @@ const AddBankEntryItem: React.FC<AddBankEntryItemProps> = ({ onAdd }) => {
     setSelectedDate(new Date())
     setBalances([DEFAULT_NEW_BALANCE])
   }
+
+  const accountSelectorOptions = bankAccounts.map(account => ({
+    value: account.id,
+    label: account.bankName
+  }))
 
   return (
     <Card interactive={false} elevation={Elevation.FOUR} className="AddBankEntryItem">
@@ -143,4 +145,10 @@ const AddBankEntryItem: React.FC<AddBankEntryItemProps> = ({ onAdd }) => {
   )
 }
 
-export default AddBankEntryItem
+const mapStateToProps = (state: AppState) => {
+  return {
+    bankAccounts: state.data.bankAccounts
+  }
+}
+
+export default connect(mapStateToProps)(AddBankEntryItem)
