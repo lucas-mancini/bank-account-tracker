@@ -32,7 +32,7 @@ const BankEntryItem: React.FC<BankEntryItemProps> = ({
     const bankAccount = getBankAccountFromId(bankAccounts, balance.bankAccountId)
     if (!bankAccount) return total
 
-    return total + balance.amount * exchangeRates[bankAccount.currency]
+    return total + balance.amount / exchangeRates[bankAccount.currency]
   }, 0)
 
   return (

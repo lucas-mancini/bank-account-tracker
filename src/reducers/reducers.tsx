@@ -13,9 +13,9 @@ const initialDataState: DataStateType = {
   bankEntries: initialData,
   bankAccounts: BankAccounts,
   exchangeRates: {
-    ARS: 0.02408,
-    AUD: 0.7021,
-    EUR: 1.12875,
+    ARS: 43.196,
+    AUD: 1.44655,
+    EUR: 0.89706,
     USD: 1.0
   }
 }
