@@ -3,7 +3,6 @@ export interface BankAccount {
   bankName: string
   country: string
   currency: string
-  exchangeRateToUSD: number
 }
 
 export interface BankEntry {
@@ -21,5 +20,6 @@ export interface AccountBalance {
 export type DataStateType = {
   bankEntries: BankEntry[]
   bankAccounts: BankAccount[]
+  exchangeRates: { [s: string]: number }
 }
 export type AppStateType = { entryIdToRemove: string }

@@ -17,16 +17,22 @@ interface BankEntryItemProps {
   bankEntry: BankEntry
   onRemove: (id: string) => void
   bankAccounts: BankAccount[]
+  exchangeRates: { [s: string]: number }
 }
 
-const BankEntryItem: React.FC<BankEntryItemProps> = ({ bankEntry, onRemove, bankAccounts }) => {
+const BankEntryItem: React.FC<BankEntryItemProps> = ({
+  bankEntry,
+  onRemove,
+  bankAccounts,
+  exchangeRates
+}) => {
   const formattedDate = formatDate(bankEntry.date)
 
   const totalAmount = bankEntry.balances.reduce((total, balance) => {
     const bankAccount = getBankAccountFromId(bankAccounts, balance.bankAccountId)
     if (!bankAccount) return total
 
-    return total + balance.amount * bankAccount.exchangeRateToUSD
+    return total + balance.amount * exchangeRates[bankAccount.currency]
   }, 0)
 
   return (
@@ -60,7 +66,8 @@ const BankEntryItem: React.FC<BankEntryItemProps> = ({ bankEntry, onRemove, bank
 
 const mapStateToProps = (state: AppState) => {
   return {
-    bankAccounts: state.data.bankAccounts
+    bankAccounts: state.data.bankAccounts,
+    exchangeRates: state.data.exchangeRates
   }
 }
 

@@ -11,7 +11,13 @@ import BankAccounts from '../config/BankAccounts'
 
 const initialDataState: DataStateType = {
   bankEntries: initialData,
-  bankAccounts: BankAccounts
+  bankAccounts: BankAccounts,
+  exchangeRates: {
+    ARS: 0.02408,
+    AUD: 0.7021,
+    EUR: 1.12875,
+    USD: 1.0
+  }
 }
 function dataReducer(state = initialDataState, action: BankEntryActionTypes): DataStateType {
   switch (action.type) {
