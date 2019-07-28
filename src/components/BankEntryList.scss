@@ -4,3 +4,9 @@
   width: 100%;
   max-width: 550px;
 }
+
+.BankEntryList {
+  &--empty-state {
+    margin-bottom: 30px;
+  }
+}

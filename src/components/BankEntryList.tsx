@@ -1,7 +1,7 @@
 import React from 'react'
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
-import { Intent, Alert, Divider } from '@blueprintjs/core'
+import { Intent, Alert, Divider, NonIdealState } from '@blueprintjs/core'
 import BankEntryItem from './BankEntryItem'
 import AddBankEntryItem from './AddBankEntryItem'
 import { AppState } from '../reducers/reducers'
@@ -26,6 +26,14 @@ const BankEntryList: React.FC<BankEntryListProps> = ({
 }) => (
   <React.Fragment>
     <section className="BankEntryList">
+      {entryItems.length === 0 && (
+        <NonIdealState
+          className="BankEntryList--empty-state"
+          icon="list"
+          title="No bank entry items to show"
+          description="If you want to add a new bank entry for a specific date, use the section below"
+        />
+      )}
       {entryItems.map(item => (
         <BankEntryItem key={item.id} bankEntry={item} onRemove={id => setEntryIdToRemove(id)} />
       ))}
